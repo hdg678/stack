@@ -1,4 +1,4 @@
-# Test NasmX86 2021-03-23 at 20:09:10
+# Test Stack
 
 name: Test
 
@@ -12,30 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install Data::Table::Text
+    - name: Install gcc
       run: |
-        sudo cpan install -T Data::Table::Text
-    - name: Install GitHub::Crud
-      run: |
-        sudo cpan install -T Digest::SHA1
-    - name: Install Nasm
-      run: |
-        sudo apt-get install -y nasm
-    - name: Install tree
-      run: |
-        sudo apt-get install -y tree
-    - name: Download Intel Sde
-      if: always()
-      run: |
-        curl https://software.intel.com/content/dam/develop/external/us/en/documents/downloads/sde-external-8.63.0-2021-01-18-lin.tar.bz2 > sde.tar.bz2
-        tree
-    - name: Install Intel Sde
-      if: always()
-      run: |
-        tar -xf sde.tar.bz2
-        mv sde-external-8.63.0-2021-01-18-lin/ sde/
-        tree
+        sudo apt install build-essential
     - name: Test
-      if: always()
       run: |
-        perl lib/Nasm/X86.pm
+        gcc stack.c 
+        ./a.out
