@@ -1,3 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+
+int array_size = 10;
+int array_used = 0;
+int *array;
+
+void stack_create(void)
+{ array = malloc(array_size * sizeof(int)); 
+  array_used = 0;
+}
+
 void stack_push(int data)
 { if(array_used < array_size - 1){
 	array[array_used] = data;
